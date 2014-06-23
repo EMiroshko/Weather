@@ -85,3 +85,16 @@ body {
 	font-size: 20px;
 	
 } 
+.choice_button{
+	background-color: rgba(120,160,60,0.8);
+	border: 0;
+	padding:10px;
+	color:rgb(255,255,255);
+	cursor: pointer;
+}
+.choice_input{
+	
+	border: 0;
+	padding:10px;
+	color:rgb(0,0,0);
+}
