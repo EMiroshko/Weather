@@ -16,6 +16,7 @@ function insertWeather(town){
 $("#choice_button").click(function(){
 	
 	insertWeather($("#enter_town").val());
+	$(".none").show();
 });//
 function formatTemperature(temp){
 	temp=Math.round(temp-273)+"°C";
