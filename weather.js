@@ -5,7 +5,10 @@ function insertWeather(town){
 		var temp_today=formatTemperature(data.main.temp);
 		 $(".high_low .today_parametr_data").html((temp_min)+"/"+(temp_max));
 		 $(".header h1").html(temp_today);
-		 $(".current_condition .today_parametr_data").html(data.weather[0].description);
+		 $(".current_condition .today_parametr_data").html(upperCaseFirst(data.weather[0].description));
+		 $(".header h2").html(upperCaseFirst(town)+","+upperCaseFirst(data.sys.country));
+		 $(".humidity .today_parametr_data").html(data.main.humidity);
+		 $(".wind .today_parametr_data").html(Math.round(data.wind.speed)+" mph/S")
 	  return(data)
 	});
 }
@@ -19,4 +22,11 @@ function formatTemperature(temp){
 	return(temp);
 }
 
+function upperCaseFirst(str){
+var rest="";
+for (var i = 1; i <str.length; i++) {
+	rest=str.slice(1, str.length+1);
+};
+return(str[0].toUpperCase()+rest.toLowerCase());
+}
  
