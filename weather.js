@@ -1,3 +1,4 @@
+var nowDate = new Date();
 function insertWeather(town){
 	$.getJSON( "http://api.openweathermap.org/data/2.5/weather?q="+town, function( data ) {
 		var temp_min=formatTemperature(data.main.temp_min);
@@ -9,6 +10,7 @@ function insertWeather(town){
 		 $(".header h2").html(upperCaseFirst(town)+","+upperCaseFirst(data.sys.country));
 		 $(".humidity .today_parametr_data").html(data.main.humidity);
 		 $(".wind .today_parametr_data").html(Math.round(data.wind.speed)+" mph/S")
+		 $(".today_date").html(nowDate);
 	  return(data)
 	});
 }
