@@ -17,14 +17,14 @@ function insertWeather(town){
 	});
 	$.getJSON( "http://api.openweathermap.org/data/2.5/forecast/daily?q="+town+"&mode=json&units=metric&cnt=8", function( data ){
 		var date = new Date(data.list[0].dt*1000);
-		var gDate=date.getDate();
+		var gDate=date.getDate()+1;
 		if (gDate<10) gDate="0"+gDate;
 		$(".week_day").html(getWeekDay(date)+" "+gDate);
-		$(".forecast_temperature").html(Math.round(data.list[0].temp.min)+"°C"+"/"+Math.round(data.list[0].temp.max)+"°C");
-		$(".forecast_cloudy").html(upperCaseFirst(data.list[4].weather[0].description));
-		$(".forecast_wind").html("wind: "+Math.round(data.list[5].speed)+" mph/S");
-		$(".weather_image").addClass("weather_image_"+(data.list[4].weather[0].main));
-		
+		$(".forecast_temperature").html(Math.round(data.list[1].temp.min)+"°C"+"/"+Math.round(data.list[0].temp.max)+"°C");
+		$(".forecast_cloudy").html(upperCaseFirst(data.list[1].weather[0].description));
+		$(".forecast_wind").html("wind: "+Math.round(data.list[1].speed)+" mph/S");
+		$(".weather_image").addClass("weather_image_"+(data.list[1].weather[0].main));
+
 	});
 }
 
@@ -48,5 +48,5 @@ return(str[0].toUpperCase()+rest.toLowerCase());
 function getWeekDay(date) {
   var weekDay = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'] ;
  
-  return weekDay[ date.getDay() ];
+  return weekDay[ date.getDay() +1];
 } 
