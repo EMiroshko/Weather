@@ -19,7 +19,8 @@ body {
 .header h1, .header h2{
 	display: inline-block;
 	position: relative;
-    top: -110px;
+	margin:0px;
+    
 }
 .header h2{
 	margin-left: 65px;
@@ -28,7 +29,7 @@ body {
 .weather_today_parameter{
 	display: inline-block;
 	height: 50px;
-	width: 180px;
+	width: 210px;
 	margin-bottom: 25px;
 }
 .weather_forecast_day{
@@ -39,13 +40,13 @@ body {
 	padding:10px 18px;
 	margin-left: 6px;
 	position: relative;
-    top: -166px;
+    
 
 }
 .weather_today{
-	width: 800px;
+	width: 1000px;
 	position: relative;
-    top: -210px;
+    
 
 }
 .header h1{
@@ -68,7 +69,7 @@ body {
 	font-size: 20px;
 	
 	position: relative;
-    top: 8px;
+    
 }
 .week_day{
 	font-size: 25px;
@@ -100,4 +101,20 @@ body {
 }
 .none{
 	display:none;
+}
+.weather_image img{
+	width: 80%;
+	display:none;
+}
+.weather_image_Clear .Clear{
+	display:inline-block;
+}
+.weather_image_Clouds .Clouds{
+	display:inline-block;
+}
+.weather_image_Snow .Snow{
+	display:inline-block;
+}
+.weather_image_Rain .Rain{
+	display:inline-block;
 }
