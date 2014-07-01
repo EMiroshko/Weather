@@ -1,4 +1,5 @@
 
+
 function insertWeather(town){
 	
 	var nowDate = new Date();
@@ -16,14 +17,37 @@ function insertWeather(town){
 	  return(data)
 	});
 	$.getJSON( "http://api.openweathermap.org/data/2.5/forecast/daily?q="+town+"&mode=json&units=metric&cnt=8", function( data ){
-		var date = new Date(data.list[0].dt*1000);
-		var gDate=date.getDate()+1;
+		
+		var date = new Date(data.list[1].dt*1000);
+		var gDate=date.getDate();
+		
 		if (gDate<10) gDate="0"+gDate;
 		$(".week_day").html(getWeekDay(date)+" "+gDate);
-		$(".forecast_temperature").html(Math.round(data.list[1].temp.min)+"°C"+"/"+Math.round(data.list[0].temp.max)+"°C");
+		$(".forecast_temperature").html(Math.round(data.list[1].temp.min)+"°C"+"/"+Math.round(data.list[1].temp.max)+"°C");
 		$(".forecast_cloudy").html(upperCaseFirst(data.list[1].weather[0].description));
 		$(".forecast_wind").html("wind: "+Math.round(data.list[1].speed)+" mph/S");
 		$(".weather_image").addClass("weather_image_"+(data.list[1].weather[0].main));
+		
+		var forecast_days_count = 5;
+		var forecastArr=[($(".weather_forecast_day:first" ))];
+		
+		for (var i = 0; i < forecast_days_count-1; i++) {
+			forecastArr.push($(".weather_forecast_day:first" ).clone().appendTo(".weather_forecast"));
+		};
+		
+		for (var i = 0; i <5; i++) {
+			var date = new Date(data.list[i+1].dt*1000);
+			var gDate=date.getDate();
+		
+			if (gDate<10) gDate="0"+gDate;
+			$(".week_day", forecastArr[i]).html(getWeekDay(date)+" "+gDate);
+			$(".forecast_temperature", forecastArr[i]).html(Math.round(data.list[i+1].temp.min)+"°C"+"/"+Math.round(data.list[2].temp.max)+"°C");
+			$(".forecast_cloudy", forecastArr[i]).html(upperCaseFirst(data.list[i+1].weather[0].description));
+			$(".forecast_wind", forecastArr[i]).html("wind: "+Math.round(data.list[i+1].speed)+" mph/S");
+			//$(".weather_image", forecastArr[i]).addClass("weather_image_"+(data.list[i+1].weather[0].main));
+		
+		};
+		
 
 	});
 }
@@ -48,5 +72,5 @@ return(str[0].toUpperCase()+rest.toLowerCase());
 function getWeekDay(date) {
   var weekDay = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'] ;
  
-  return weekDay[ date.getDay() +1];
+  return weekDay[ date.getDay()];
 } 
