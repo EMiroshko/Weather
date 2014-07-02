@@ -48,7 +48,15 @@ function insertWeather(town){
 
 }
 
-
+$(document).ready(function(){
+	$("#enter_town").keypress(function(e){
+		if(e.keyCode==13){
+	    	insertWeather($("#enter_town").val());
+			$(".none").show();
+	    }
+	 });
+ 
+});
 $("#choice_button").click(function(){
 	
 	insertWeather($("#enter_town").val());
