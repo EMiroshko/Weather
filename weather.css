@@ -35,11 +35,13 @@ body {
 .weather_forecast_day{
 	background-color: rgba(120,160,60,0.8);
 	display: inline-block;
+	vertical-align: top;
 	height: 280px;
 	width: 135px;
 	padding:10px 18px;
 	margin-left: 6px;
 	position: relative;
+
     
 
 }

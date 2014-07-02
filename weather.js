@@ -18,15 +18,6 @@ function insertWeather(town){
 	});
 	$.getJSON( "http://api.openweathermap.org/data/2.5/forecast/daily?q="+town+"&mode=json&units=metric&cnt=8", function( data ){
 		
-		var date = new Date(data.list[1].dt*1000);
-		var gDate=date.getDate();
-		
-		if (gDate<10) gDate="0"+gDate;
-		$(".week_day").html(getWeekDay(date)+" "+gDate);
-		$(".forecast_temperature").html(Math.round(data.list[1].temp.min)+"°C"+"/"+Math.round(data.list[1].temp.max)+"°C");
-		$(".forecast_cloudy").html(upperCaseFirst(data.list[1].weather[0].description));
-		$(".forecast_wind").html("wind: "+Math.round(data.list[1].speed)+" mph/S");
-		$(".weather_image").addClass("weather_image_"+(data.list[1].weather[0].main));
 		
 		var forecast_days_count = 5;
 		var forecastArr=[($(".weather_forecast_day:first" ))];
@@ -40,11 +31,11 @@ function insertWeather(town){
 			var gDate=date.getDate();
 		
 			if (gDate<10) gDate="0"+gDate;
-			$(".week_day", forecastArr[i]).html(getWeekDay(date)+" "+gDate);
+			forecastArr[i].find(".week_day").html(getWeekDay(date)+" "+gDate);
 			$(".forecast_temperature", forecastArr[i]).html(Math.round(data.list[i+1].temp.min)+"°C"+"/"+Math.round(data.list[2].temp.max)+"°C");
 			$(".forecast_cloudy", forecastArr[i]).html(upperCaseFirst(data.list[i+1].weather[0].description));
 			$(".forecast_wind", forecastArr[i]).html("wind: "+Math.round(data.list[i+1].speed)+" mph/S");
-			//$(".weather_image", forecastArr[i]).addClass("weather_image_"+(data.list[i+1].weather[0].main));
+			$(".weather_image", forecastArr[i]).addClass("weather_image_"+(data.list[i+1].weather[0].main));
 		
 		};
 		
