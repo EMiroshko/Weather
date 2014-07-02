@@ -18,15 +18,19 @@ function insertWeather(town){
 	});
 	$.getJSON( "http://api.openweathermap.org/data/2.5/forecast/daily?q="+town+"&mode=json&units=metric&cnt=8", function( data ){
 		
-		
+		$(".weather_forecast_day:first").nextAll().remove();
+		$(".weather_image").removeClass("weather_image_Rain weather_image_Clear weather_image_Snow weather_image_Clouds");
+
 		var forecast_days_count = 5;
 		var forecastArr=[($(".weather_forecast_day:first" ))];
 		
 		for (var i = 0; i < forecast_days_count-1; i++) {
 			forecastArr.push($(".weather_forecast_day:first" ).clone().appendTo(".weather_forecast"));
 		};
+
 		
-		for (var i = 0; i <5; i++) {
+		for (var i = 0; i <forecast_days_count; i++) {
+
 			var date = new Date(data.list[i+1].dt*1000);
 			var gDate=date.getDate();
 		
@@ -41,7 +45,9 @@ function insertWeather(town){
 		
 
 	});
+
 }
+
 
 $("#choice_button").click(function(){
 	
