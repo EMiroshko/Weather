@@ -4,6 +4,12 @@ function insertWeather(town){
 	
 	var nowDate = new Date();
 	$.getJSON( "http://api.openweathermap.org/data/2.5/weather?q="+town, function( data ) {
+		if (data.cod==="404"){
+			alert ("error");
+			return;
+		} 
+			
+		$(".none").show();
 		var temp_min=formatTemperature(data.main.temp_min);
 		var temp_max=formatTemperature(data.main.temp_max);
 		var temp_today=formatTemperature(data.main.temp);
@@ -52,7 +58,7 @@ $(document).ready(function(){
 	$("#enter_town").keypress(function(e){
 		if(e.keyCode==13){
 	    	insertWeather($("#enter_town").val());
-			$(".none").show();
+			//$(".none").show();
 	    }
 	 });
  
@@ -60,7 +66,7 @@ $(document).ready(function(){
 $("#choice_button").click(function(){
 	
 	insertWeather($("#enter_town").val());
-	$(".none").show();
+	//$(".none").show();
 });//
 function formatTemperature(temp){
 	temp=Math.round(temp-273)+"°C";
