@@ -15,6 +15,18 @@ body {
 
 	}
 
+body .background_image_Clear{
+	background-image: url("images/Clear.jpg") ;
+	}
+body .background_image_Rain{
+	background-image: url("images/Rain.jpg") ;
+	}
+body .background_image_Clouds{
+	background-image: url("images/Clouds.jpg") ;
+	}
+body .background_image_Snow{
+	background-image: url("images/Snow.jpg") ;
+	}
 
 .header h1, .header h2{
 	display: inline-block;

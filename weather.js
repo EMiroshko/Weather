@@ -19,6 +19,7 @@ function insertWeather(town){
 		var temp_min=formatTemperature(data.main.temp_min);
 		var temp_max=formatTemperature(data.main.temp_max);
 		var temp_today=formatTemperature(data.main.temp);
+		 $('body').addClass("background_image_"+(data.weather[0].main));
 		 $('body').css('backgroundImage', 'url(Images/'+(data.weather[0].main)+'.jpg)');
 		 $(".high_low .today_parametr_data").html((temp_min)+"/"+(temp_max));
 		 $(".header h1").html(temp_today);
