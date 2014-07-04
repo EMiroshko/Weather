@@ -120,3 +120,14 @@ body {
 .weather_image_Rain .Rain{
 	display:inline-block;
 }
+.errorMsg {
+	border-color:black;
+	margin-top: 5px;
+	padding: 10px;
+	border-radius: 10px;
+    position:absolute;
+    left:110px;
+    width: 300px;
+    background-color: red;
+    color:white;
+    display:none;

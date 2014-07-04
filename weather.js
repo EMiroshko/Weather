@@ -9,15 +9,17 @@ function insertWeather(town){
 	if (getMonth<10) getMonth="0"+getMonth;
 	$.getJSON( "http://api.openweathermap.org/data/2.5/weather?q="+town, function( data ) {
 		if (data.cod==="404"){
-			alert ("There is no such town in our database. Please check your input for mistakes or choose another one ");
+			$(".none").hide(); 
+			$(".errorMsg").show();
+
 			return;
 		} 
-			
+		$(".errorMsg").hide();	
 		$(".none").show();
 		var temp_min=formatTemperature(data.main.temp_min);
 		var temp_max=formatTemperature(data.main.temp_max);
 		var temp_today=formatTemperature(data.main.temp);
-		$('body').css('backgroundImage', 'url(Images/'+(data.weather[0].main)+'.jpg)');
+		 $('body').css('backgroundImage', 'url(Images/'+(data.weather[0].main)+'.jpg)');
 		 $(".high_low .today_parametr_data").html((temp_min)+"/"+(temp_max));
 		 $(".header h1").html(temp_today);
 		 $(".current_condition .today_parametr_data").html(upperCaseFirst(data.weather[0].description));
@@ -58,7 +60,7 @@ function insertWeather(town){
 			
 		};
 		
-
+		return(data)
 	});
 
 }
