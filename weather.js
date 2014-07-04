@@ -17,6 +17,7 @@ function insertWeather(town){
 		var temp_min=formatTemperature(data.main.temp_min);
 		var temp_max=formatTemperature(data.main.temp_max);
 		var temp_today=formatTemperature(data.main.temp);
+		$('body').css('backgroundImage', 'url(Images/'+(data.weather[0].main)+'.jpg)');
 		 $(".high_low .today_parametr_data").html((temp_min)+"/"+(temp_max));
 		 $(".header h1").html(temp_today);
 		 $(".current_condition .today_parametr_data").html(upperCaseFirst(data.weather[0].description));
@@ -24,8 +25,7 @@ function insertWeather(town){
 		 $(".humidity .today_parametr_data").html(data.main.humidity);
 		 $(".wind .today_parametr_data").html(Math.round(data.wind.speed)+" mph/S")
 		 $(".today_date").html("Today's date: "+getDate+"/"+getMonth+"/"+nowDate.getFullYear());
-		 $('body').css('backgroundImage', 'url(Images/'+(data.weather[0].main)+'.jpg)');
-			
+		 
 
 
 	  return(data)
