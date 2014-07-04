@@ -6,7 +6,7 @@ html{
 }
 
 body {
-	background: url("images/sky_new.jpg") no-repeat ;
+	background-image: url("images/sky_new.jpg") ;
 	background-size:100%;
 	background-position: center;
 	background-color: #222222;

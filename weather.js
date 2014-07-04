@@ -3,9 +3,13 @@
 function insertWeather(town){
 	
 	var nowDate = new Date();
+	var getDate=nowDate.getDate();
+	var getMonth =nowDate.getMonth()
+	if (getDate<10) getDate="0"+getDate;
+	if (getMonth<10) getMonth="0"+getMonth;
 	$.getJSON( "http://api.openweathermap.org/data/2.5/weather?q="+town, function( data ) {
 		if (data.cod==="404"){
-			alert ("error");
+			alert ("There is no such town in our database. Please check your input for mistakes or choose another one ");
 			return;
 		} 
 			
@@ -19,7 +23,11 @@ function insertWeather(town){
 		 $(".header h2").html(upperCaseFirst(town)+","+upperCaseFirst(data.sys.country));
 		 $(".humidity .today_parametr_data").html(data.main.humidity);
 		 $(".wind .today_parametr_data").html(Math.round(data.wind.speed)+" mph/S")
-		 $(".today_date").html(nowDate);
+		 $(".today_date").html("Today's date: "+getDate+"/"+getMonth+"/"+nowDate.getFullYear());
+		 $('body').css('backgroundImage', 'url(Images/'+(data.weather[0].main)+'.jpg)');
+			
+
+
 	  return(data)
 	});
 	$.getJSON( "http://api.openweathermap.org/data/2.5/forecast/daily?q="+town+"&mode=json&units=metric&cnt=8", function( data ){
@@ -46,7 +54,8 @@ function insertWeather(town){
 			$(".forecast_cloudy", forecastArr[i]).html(upperCaseFirst(data.list[i+1].weather[0].description));
 			$(".forecast_wind", forecastArr[i]).html("wind: "+Math.round(data.list[i+1].speed)+" mph/S");
 			$(".weather_image", forecastArr[i]).addClass("weather_image_"+(data.list[i+1].weather[0].main));
-		
+			
+			
 		};
 		
 
